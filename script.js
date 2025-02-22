@@ -40,16 +40,16 @@ function operate(op, x, y) {
 
 // Test
 
-let askForNumbers = true;
-while (askForNumbers) {
-  const x = prompt('Enter x');
-  const y = prompt('Enter y');
+// let askForNumbers = true;
+// while (askForNumbers) {
+//   const x = prompt('Enter x');
+//   const y = prompt('Enter y');
 
-  if (y == 'q') {
-    askForNumbers = false;
-    continue;
-  }
+//   if (y == 'q') {
+//     askForNumbers = false;
+//     continue;
+//   }
 
-  console.log(`x = ${x}`)
-  console.log(`y = ${y}`)
-}
+//   console.log(`x = ${x}`)
+//   console.log(`y = ${y}`)
+// }

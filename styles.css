@@ -3,3 +3,35 @@
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+h1 {
+    text-align: center;
+    margin: 20px;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 400px;
+    margin: 0 auto;
+    border: 2px solid;
+}
+
+.display {
+    flex: 1;
+    height: 100px;
+    border: 2px solid;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    border: 2px solid;
+}
+
+.button {
+    flex: 1;
+    border: 2px solid;
+}
