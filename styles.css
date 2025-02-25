@@ -6,7 +6,7 @@
 
 h1 {
     text-align: center;
-    margin: 20px;
+    margin: 40px;
 }
 
 .calculator {
@@ -16,22 +16,31 @@ h1 {
     width: 400px;
     margin: 0 auto;
     border: 2px solid;
-}
+    padding: 8px;
+    background-color: steelblue;
+    gap: 4px;
 
 .display {
     flex: 1;
     height: 100px;
     border: 2px solid;
+    background-color: azure;
+    margin-bottom: 8px;
 }
 
 .row {
     display: flex;
     flex-direction: row;
     flex: 1;
-    border: 2px solid;
+    gap: 4px;
 }
 
-.button {
+button {
     flex: 1;
-    border: 2px solid;
+    font-size: 24px;
+    border-radius: 8px;
+}
+
+.zero {
+    flex: 2;
 }
