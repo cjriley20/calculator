@@ -41,7 +41,7 @@ function operate(op, x, y) {
 }
 
 // Screen elements
-const display = document.querySelector('div.display > p')
+const display = document.querySelector('div.display p')
 
 const buttons = document.querySelectorAll('button.digit')
 
