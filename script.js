@@ -1,3 +1,5 @@
+// Calculator operations
+
 const Operator = Object.freeze({
   Add: 'Add',
   Subtract: 'Subtract',
@@ -38,6 +40,17 @@ function operate(op, x, y) {
   }
 }
 
+// Screen elements
+const display = document.querySelector('div.display > p')
+
+const buttons = document.querySelectorAll('button.digit')
+
+buttons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    display.textContent = e.target.textContent;
+  });
+});
+  
 // Test
 
 // let askForNumbers = true;

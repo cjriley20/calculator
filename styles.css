@@ -21,11 +21,17 @@ h1 {
     gap: 4px;
 
 .display {
+    display: flex;
     flex: 1;
     height: 100px;
     border: 2px solid;
     background-color: azure;
     margin-bottom: 8px;
+}
+
+.display p {
+    flex: 1;
+    font-size: 36px;
 }
 
 .row {
