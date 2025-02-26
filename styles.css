@@ -41,6 +41,10 @@ button {
     border-radius: 8px;
 }
 
-.zero {
-    flex: 2;
+.digit {
+    background-color: lightgray;
+}
+
+.equal {
+    background-color: lightcoral;
 }
