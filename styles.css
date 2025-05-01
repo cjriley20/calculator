@@ -4,21 +4,17 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-h1 {
-    text-align: center;
-    margin: 40px;
-}
-
 .calculator {
     display: flex;
     flex-direction: column;
     height: 500px;
     width: 400px;
-    margin: 0 auto;
+    margin: 100px auto;
     border: 2px solid;
     padding: 8px;
     background-color: steelblue;
     gap: 4px;
+}
 
 .display {
     display: flex;
