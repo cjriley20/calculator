@@ -24,27 +24,43 @@ function percent(x) {
   return x / 100;
 }
 
-// Mapping from operator symbols to display text
-const OperatorInfo = Object.freeze({
-  Add: { fn: add, label: '+' },
-  Subtract: { fn: subtract, label: '-' },
-  Multiply: { fn: multiply, label: '*' },
-  Divide: { fn: divide, label: '/' },
-  Negate: { fn: negate, label: '+/-' },
-  Percent: { fn: percent, label: '%' },
-  Clear: { fn: null, label: 'AC' },
-  Equal: { fn: null, label: '=' }
+// Mapping from symbols to display text
+
+const BinaryOperator = Object.freeze({
+  Add: '+',
+  Subtract: '-',
+  Multiply: '*',
+  Divide: '/',
 });
 
-function operate(op, x, y) {
-  return OperatorInfo[op].fn(x, y);
-}
+const UnaryOperator = Object.freeze({
+  Negate: '+/-',
+  Percent: '%',
+});
 
-// Populate operator buttons.
-const operatorButtons = document.querySelectorAll('.operator')
-operatorButtons.forEach((button) => {
+const GeneralFunction = Object.freeze({
+  Clear: 'AC',
+  Equal: '='
+});
+
+// Populate operator and general function buttons.
+
+const binaryOperatorButtons = document.querySelectorAll('.binary-operator')
+binaryOperatorButtons.forEach((button) => {
   const op = button.dataset.op;
-  button.textContent = OperatorInfo[op].label;
+  button.textContent = BinaryOperator[op];
+})
+
+const unaryOperatorButtons = document.querySelectorAll('.unary-operator')
+unaryOperatorButtons.forEach((button) => {
+  const op = button.dataset.op;
+  button.textContent = UnaryOperator[op];
+})
+
+const generalFunctionButtons = document.querySelectorAll('.general-function')
+generalFunctionButtons.forEach((button) => {
+  const op = button.dataset.op;
+  button.textContent = GeneralFunction[op];
 })
 
 // Screen elements
