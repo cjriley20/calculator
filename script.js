@@ -118,7 +118,9 @@ binaryOperatorButtons.forEach((button) => {
         state.operand1 = String(result);
         updateDisplay(state.operand1);
 
+        // Update operator.
         state.operator = op;
+        state.mode = Mode.Operator;
         break;
     }
   });
