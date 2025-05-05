@@ -50,6 +50,10 @@ button {
     background-color: lightgray;
 }
 
+.zero {
+    background-color: lightgray;
+}
+
 .equal {
     background-color: lightcoral;
 }

@@ -212,6 +212,8 @@ generalFunctionButtons.forEach((button) => {
   });
 })
 
+// Digit buttons
+
 const digitButtons = document.querySelectorAll('.digit')
 
 digitButtons.forEach((button) => {
@@ -239,3 +241,30 @@ digitButtons.forEach((button) => {
     }
   });
 })
+
+// Zero button
+
+const zeroButton = document.querySelector('.zero')
+
+zeroButton.addEventListener('click', (e) => {
+  let zero = '0';
+  switch (state.mode) {
+    case Mode.Start:
+      state.operand1 = zero;
+      updateDisplay(state.operand1);
+      break;
+    case Mode.FirstOperand:
+      state.operand1 += zero;
+      updateDisplay(state.operand1);
+      break;
+    case Mode.Operator:
+      state.operand2 = zero;
+      state.mode = Mode.SecondOperand;
+      updateDisplay(state.operand2);
+      break;
+    case Mode.SecondOperand:
+      state.operand2 += zero;
+      updateDisplay(state.operand2);
+      break;
+  }
+});
