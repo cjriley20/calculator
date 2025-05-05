@@ -163,8 +163,6 @@ unaryOperatorButtons.forEach((button) => {
 
     switch (state.mode) {
       case Mode.Start:
-        // Operand is zero - nothing to do
-        break;
       case Mode.FirstOperand: {
         let x = Number(state.operand1);
         let result = UnaryOperator[op].fn(x);
@@ -205,9 +203,7 @@ generalFunctionButtons.forEach((button) => {
       case GeneralFunction.Equal:
         switch (state.mode) {
           case Mode.Start:
-            break;
           case Mode.FirstOperand:
-            break;
           case Mode.Operator:
             break;
           case Mode.SecondOperand:
