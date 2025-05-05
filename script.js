@@ -102,8 +102,8 @@ binaryOperatorButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
     switch (state.mode) {
       case Mode.Start:
-        // Start with zero.
-        state.operand1 = '0';
+        // Assume we already have a first operand (which may be 0).
+        state.operand1 = state.operand1 || '0';
         state.operator = op;
         state.mode = Mode.Operator;
         break;
@@ -200,6 +200,11 @@ generalFunctionButtons.forEach((button) => {
             // Update display.
             state.operand1 = String(result);
             updateDisplay(state.operand1);
+
+            // Reset rest of state.
+            state.mode = Mode.Start;
+            state.operand2 = '';
+            state.operator = null;
             break;
         }
         break;
