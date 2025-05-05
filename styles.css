@@ -44,16 +44,52 @@ button {
     flex: 1;
     font-size: 24px;
     border-radius: 8px;
+    transition: background-color 0.15s ease;
+    border: none
 }
 
-.digit {
-    background-color: lightgray;
+button:active {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.digit, 
 .zero {
     background-color: lightgray;
 }
 
+.digit:active, 
+.zero:active {
+    background-color: #f0f0f0;
+}
+
+.binary-operator {
+    background-color: lightsteelblue;
+}
+
+.binary-operator:active {
+    background-color: #d6e1eb;
+}
+
+.unary-operator {
+    background-color: lightblue;
+}
+
+.unary-operator:active {
+    background-color: #d7ecf7;
+}
+
+.general-function {
+    background-color: lightsalmon;
+}
+
+.general-function:active {
+    background-color: #ffd1b3;
+}
+
 .equal {
     background-color: lightcoral;
+}
+
+.equal:active {
+    background-color: #f88a8a;
 }
