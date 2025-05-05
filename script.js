@@ -81,14 +81,28 @@ const BinaryOperator = Object.freeze({
 });
 
 const UnaryOperator = Object.freeze({
-  Negate: { fn: negate, label: '+/-' },
+  Negate: { fn: negate, label: '+/-', key: 'n' },
   Percent: { fn: percent, label: '%' },
 });
 
 const GeneralFunction = Object.freeze({
-  Clear: { label: 'AC' },
-  Equal: { label: '=' }
+  Clear: { label: 'AC', key: 'Escape' },
+  Equal: { label: '=', key: 'Enter' }
 });
+
+// Mapping from keyboard to operators
+
+function makeKeyMap(Operator) {
+  return Object.entries(Operator).reduce((map, [name, op]) => {
+    const key = op.key || op.label;
+    if (key) map[key] = name;
+    return map;
+  }, {});
+}
+
+const BinaryOperatorKeyMap = makeKeyMap(BinaryOperator);
+const UnaryOperatorKeyMap = makeKeyMap(UnaryOperator);
+const GeneralFunctionKeyMap = makeKeyMap(GeneralFunction);
 
 // Binary operator buttons
 
@@ -322,5 +336,49 @@ decimalButton.addEventListener('click', (e) => {
         updateDisplay(state.operand2);
       }
       break;
+  }
+});
+
+// Keyboard support
+
+document.addEventListener('keydown', (e) => {
+  const key = e.key;
+
+  // Digits
+  if (/[1-9]/.test(key)) {
+    const button = Array.from(digitButtons).find(btn => btn.textContent === key);
+    if (button) button.click();
+    return;
+  }
+
+  // Zero
+  if (key === '0') {
+    zeroButton.click();
+  }
+
+  // Decimal
+  if (key === '.') {
+    decimalButton.click();
+  }
+
+  // Binary operators
+  if (key in BinaryOperatorKeyMap) {
+    const op = BinaryOperatorKeyMap[key];
+    const button = Array.from(binaryOperatorButtons).find(btn => btn.dataset.op == op);
+    if (button) button.click();
+  }
+
+  // Unary operators
+  if (key in UnaryOperatorKeyMap) {
+    const op = UnaryOperatorKeyMap[key];
+    const button = Array.from(unaryOperatorButtons).find(btn => btn.dataset.op == op);
+    if (button) button.click();
+  }7
+
+  // General functions
+  if (key in GeneralFunctionKeyMap) {
+    const op = GeneralFunctionKeyMap[key];
+    const button = Array.from(generalFunctionButtons).find(btn => btn.dataset.op == op);
+    if (button) button.click();
   }
 });
