@@ -26,10 +26,18 @@ function percent(x) {
 
 // Display
 
+const MAX_NUMBER_LENGTH = 10;
+
 const display = document.querySelector('div.display p')
 
 function updateDisplay(x) {
-  display.textContent = String(x) || '0';
+  let numberString = String(x) || '0';
+
+  if (numberString.length > MAX_NUMBER_LENGTH) {
+    numberString = numberString.slice(0, MAX_NUMBER_LENGTH);
+  }
+
+  display.textContent = numberString;
 }
 
 // Calculator state
