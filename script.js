@@ -354,11 +354,13 @@ document.addEventListener('keydown', (e) => {
   // Zero
   if (key === '0') {
     zeroButton.click();
+    return;
   }
 
   // Decimal
   if (key === '.') {
     decimalButton.click();
+    return;
   }
 
   // Binary operators
@@ -366,6 +368,7 @@ document.addEventListener('keydown', (e) => {
     const op = BinaryOperatorKeyMap[key];
     const button = Array.from(binaryOperatorButtons).find(btn => btn.dataset.op == op);
     if (button) button.click();
+    return;
   }
 
   // Unary operators
@@ -373,12 +376,34 @@ document.addEventListener('keydown', (e) => {
     const op = UnaryOperatorKeyMap[key];
     const button = Array.from(unaryOperatorButtons).find(btn => btn.dataset.op == op);
     if (button) button.click();
-  }7
+    return;
+  }
 
   // General functions
   if (key in GeneralFunctionKeyMap) {
     const op = GeneralFunctionKeyMap[key];
     const button = Array.from(generalFunctionButtons).find(btn => btn.dataset.op == op);
     if (button) button.click();
+    return;
+  }
+
+  // Backspace
+  switch (state.mode) {
+    case Mode.Start:
+      break;
+    case Mode.FirstOperand:
+      if (state.operand1.length > 0) {
+        state.operand1 = state.operand1.slice(0, -1);
+        updateDisplay(state.operand1);
+      }
+      break;
+    case Mode.Operator:
+      break;
+    case Mode.SecondOperand:
+      if (state.operand2.length > 0) {
+        state.operand2 = state.operand2.slice(0, -1);
+        updateDisplay(state.operand2);
+      }
+      break;
   }
 });
