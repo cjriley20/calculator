@@ -236,6 +236,7 @@ digitButtons.forEach((button) => {
     clearActiveBinaryOperatorButton();
 
     let digit = e.target.textContent;
+
     switch (state.mode) {
       case Mode.Start:
         state.operand1 = digit;
@@ -267,6 +268,7 @@ zeroButton.addEventListener('click', (e) => {
   clearActiveBinaryOperatorButton();
 
   let zero = '0';
+
   switch (state.mode) {
     case Mode.Start:
       state.operand1 = zero;
@@ -284,6 +286,41 @@ zeroButton.addEventListener('click', (e) => {
     case Mode.SecondOperand:
       state.operand2 += zero;
       updateDisplay(state.operand2);
+      break;
+  }
+});
+
+// Decimal button
+
+const decimalButton = document.querySelector('.decimal')
+
+decimalButton.addEventListener('click', (e) => {
+  clearActiveBinaryOperatorButton();
+
+  let decimal = '.';
+
+  switch (state.mode) {
+    case Mode.Start:
+      state.operand1 = '0.';
+      state.mode = Mode.FirstOperand;
+      updateDisplay(state.operand1);
+      break;
+    case Mode.FirstOperand:
+      if (!state.operand1.includes(decimal)) {
+        state.operand1 += decimal;
+        updateDisplay(state.operand1);
+      }
+      break;
+    case Mode.Operator:
+      state.operand2 = '0.';
+      state.mode = Mode.SecondOperand;
+      updateDisplay(state.operand2);
+      break;
+    case Mode.SecondOperand:
+      if (!state.operand2.includes(decimal)) {
+        state.operand2 += decimal;
+        updateDisplay(state.operand2);
+      }
       break;
   }
 });

@@ -53,12 +53,14 @@ button:active {
 }
 
 .digit, 
-.zero {
+.zero,
+.decimal {
     background-color: lightgray;
 }
 
-.digit:active, 
-.zero:active {
+.digit:active,
+.zero:active, 
+.decimal:active {
     background-color: #f0f0f0;
 }
 
