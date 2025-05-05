@@ -92,6 +92,15 @@ const GeneralFunction = Object.freeze({
 
 // Binary operator buttons
 
+let activeBinaryOperatorButton = null;
+
+function clearActiveBinaryOperatorButton() {
+  if (activeBinaryOperatorButton) {
+    activeBinaryOperatorButton.classList.remove('active-binary-operator');
+    activeBinaryOperatorButton = null;
+  }
+}
+
 const binaryOperatorButtons = document.querySelectorAll('.binary-operator')
 
 binaryOperatorButtons.forEach((button) => {
@@ -100,6 +109,12 @@ binaryOperatorButtons.forEach((button) => {
   button.textContent = BinaryOperator[op].label;
 
   button.addEventListener('click', (e) => {
+    clearActiveBinaryOperatorButton();
+
+    // Make this button active.
+    button.classList.add('active-binary-operator');
+    activeBinaryOperatorButton = button;
+  
     switch (state.mode) {
       case Mode.Start:
         // Assume we already have a first operand (which may be 0).
@@ -144,6 +159,8 @@ unaryOperatorButtons.forEach((button) => {
   button.textContent = UnaryOperator[op].label;
 
   button.addEventListener('click', (e) => {
+    clearActiveBinaryOperatorButton();
+
     switch (state.mode) {
       case Mode.Start:
         // Operand is zero - nothing to do
@@ -178,6 +195,8 @@ generalFunctionButtons.forEach((button) => {
   button.textContent = GeneralFunction[op].label;
 
   button.addEventListener('click', (e) => {
+    clearActiveBinaryOperatorButton();
+
     switch (GeneralFunction[op]) {
       case GeneralFunction.Clear:
         resetState();
@@ -218,6 +237,8 @@ const digitButtons = document.querySelectorAll('.digit')
 
 digitButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
+    clearActiveBinaryOperatorButton();
+
     let digit = e.target.textContent;
     switch (state.mode) {
       case Mode.Start:
@@ -247,6 +268,8 @@ digitButtons.forEach((button) => {
 const zeroButton = document.querySelector('.zero')
 
 zeroButton.addEventListener('click', (e) => {
+  clearActiveBinaryOperatorButton();
+
   let zero = '0';
   switch (state.mode) {
     case Mode.Start:
