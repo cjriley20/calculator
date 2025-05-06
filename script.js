@@ -34,7 +34,7 @@ function updateDisplay(x) {
   let numberString = String(x) || '0';
 
   if (numberString.length > MAX_NUMBER_LENGTH) {
-    numberString = numberString.slice(0, MAX_NUMBER_LENGTH);
+    numberString = Number(numberString).toExponential(5);
   }
 
   display.textContent = numberString;
@@ -179,7 +179,7 @@ unaryOperatorButtons.forEach((button) => {
       let x = Number(state[operand]);
       let result = UnaryOperator[op].fn(x);
       state[operand] = String(result);
-      updateDisplay(state[operand]);      l
+      updateDisplay(state[operand]);
     };
   
     switch (state.mode) {
