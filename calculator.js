@@ -78,11 +78,13 @@ export class Calculator {
     this.operand1 = String(result);
     this.operand2 = '';
     this.operator = null;
-    this.mode = Mode.Start;8
+    this.mode = Mode.Start;
   }
 
   inputDigit(digit) {
     if (!/^\d$/.test(digit)) return;
+
+    if (this.operand1 === 'Error') this.reset();
 
     const addDigit = (op) => {
       if (this[op] === '0') {

@@ -19,17 +19,19 @@ function updateDisplay() {
 
 // Binary operator buttons
 
+const ACTIVE_CLASS = 'active-binary-operator';
+
 let activeBinaryOperatorButton = null;
 
 function clearActiveBinaryOperatorButton() {
   if (activeBinaryOperatorButton) {
-    activeBinaryOperatorButton.classList.remove('active-binary-operator');
+    activeBinaryOperatorButton.classList.remove(ACTIVE_CLASS);
     activeBinaryOperatorButton = null;
   }
 }
 
 function setActiveBinaryOperatorButton(button) {
-  button.classList.add('active-binary-operator');
+  button.classList.add(ACTIVE_CLASS);
   activeBinaryOperatorButton = button;
 }
 
