@@ -175,22 +175,23 @@ unaryOperatorButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
     clearActiveBinaryOperatorButton();
 
+    const updateOperand = (operand) => {
+      let x = Number(state[operand]);
+      let result = UnaryOperator[op].fn(x);
+      state[operand] = String(result);
+      updateDisplay(state[operand]);      l
+    };
+  
     switch (state.mode) {
       case Mode.Start:
       case Mode.FirstOperand: {
-        let x = Number(state.operand1);
-        let result = UnaryOperator[op].fn(x);
-        state.operand1 = String(result);
-        updateDisplay(state.operand1);
+        updateOperand('operand1');
         break;
       }
       case Mode.Operator:
         break;
       case Mode.SecondOperand: {
-        let x = Number(state.operand2);
-        let result = UnaryOperator[op].fn(x);
-        state.operand2 = String(result);
-        updateDisplay(state.operand2);
+        updateOperand('operand2');
         break;
       }
     }
@@ -251,24 +252,29 @@ digitButtons.forEach((button) => {
 
     let digit = e.target.textContent;
 
+    const setFirstDigit = (operand, mode) => {
+      state[operand]= digit;
+      state.mode = Mode[mode];
+      updateDisplay(state[operand]);
+    };
+
+    const addDigit = (operand) => {
+      state[operand] += digit;
+      updateDisplay(state[operand]);   
+    };
+
     switch (state.mode) {
       case Mode.Start:
-        state.operand1 = digit;
-        state.mode = Mode.FirstOperand;
-        updateDisplay(state.operand1);
+        setFirstDigit('operand1', 'FirstOperand');
         break;
       case Mode.FirstOperand:
-        state.operand1 += digit;
-        updateDisplay(state.operand1);
+        addDigit('operand1');
         break;
       case Mode.Operator:
-        state.operand2 = digit;
-        state.mode = Mode.SecondOperand;
-        updateDisplay(state.operand2);
+        setFirstDigit('operand2', 'SecondOperand');
         break;
       case Mode.SecondOperand:
-        state.operand2 += digit;
-        updateDisplay(state.operand2);
+        addDigit('operand2');
         break;
     }
   });
@@ -313,28 +319,31 @@ decimalButton.addEventListener('click', (e) => {
 
   let decimal = '.';
 
+  const setDecimal = (operand, mode) => {
+    state[operand]= '0.';
+    state.mode = Mode[mode];
+    updateDisplay(state[operand]);
+  };
+
+  const addDecimal = (operand) => {
+    if (!state[operand].includes(decimal)) {
+      state[operand] += decimal;
+      updateDisplay(state[operand]);
+    }
+  };
+
   switch (state.mode) {
     case Mode.Start:
-      state.operand1 = '0.';
-      state.mode = Mode.FirstOperand;
-      updateDisplay(state.operand1);
+      setDecimal('operand1', 'FirstOperand');
       break;
     case Mode.FirstOperand:
-      if (!state.operand1.includes(decimal)) {
-        state.operand1 += decimal;
-        updateDisplay(state.operand1);
-      }
+      addDecimal('operand1');
       break;
     case Mode.Operator:
-      state.operand2 = '0.';
-      state.mode = Mode.SecondOperand;
-      updateDisplay(state.operand2);
+      setDecimal('operand2', 'SecondOperand');
       break;
     case Mode.SecondOperand:
-      if (!state.operand2.includes(decimal)) {
-        state.operand2 += decimal;
-        updateDisplay(state.operand2);
-      }
+      addDecimal('operand2');
       break;
   }
 });
@@ -388,22 +397,23 @@ document.addEventListener('keydown', (e) => {
   }
 
   // Backspace
+  const shortenOperand = (operand) => {
+    if (state[operand].length > 0) {
+      state[operand] = state[operand].slice(0, -1);
+      updateDisplay(state[operand]);
+    }
+  };
+
   switch (state.mode) {
     case Mode.Start:
       break;
     case Mode.FirstOperand:
-      if (state.operand1.length > 0) {
-        state.operand1 = state.operand1.slice(0, -1);
-        updateDisplay(state.operand1);
-      }
+      shortenOperand('operand1');
       break;
     case Mode.Operator:
       break;
     case Mode.SecondOperand:
-      if (state.operand2.length > 0) {
-        state.operand2 = state.operand2.slice(0, -1);
-        updateDisplay(state.operand2);
-      }
+      shortenOperand('operand2');
       break;
   }
 });
